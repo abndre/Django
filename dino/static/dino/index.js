@@ -2013,6 +2013,9 @@
             var paint = true;
             var playSound = false;
 
+            document.getElementById("score").innerHTML = this.getActualDistance(distance);
+
+
             if (!this.acheivement) {
                 distance = this.getActualDistance(distance);
                 // Score has gone beyond the initial digit count.
