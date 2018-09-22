@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'polls',
     'dino',
+    'bootstrapteste',
+    'bootstrap3'
 ]
 
 MIDDLEWARE = [

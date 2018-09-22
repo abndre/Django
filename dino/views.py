@@ -1,7 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
+from django.http import Http404
+from django.http import HttpResponse, HttpResponseRedirect
+from django.template import loader
+from django.urls import reverse
 from django.views import generic
-from django.http import HttpResponse
-from django.shortcuts import render_to_response
+
+from django.contrib.auth.forms import UserCreationForm
+
+from .models import Player
 
 def index(request):
     #return HttpResponse("Hello, world. You're at the polls index.")
@@ -13,3 +19,11 @@ def index(request):
 #    def get_queryset(self):
 #        return HttpResponse("Hello, world. You're at the polls index.")
 #    #template_name = 'dino/index.html'
+
+def login(request):
+    form = UserCreationForm()
+    #form = 
+    return render(request, 'dino/Login.html',{'form':form})
+
+def vote(request, question_id):
+    pass
