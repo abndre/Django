@@ -7,5 +7,7 @@ app_name = 'dino'
 urlpatterns = [
     #path('', views.IndexView.as_view(), name='index'),
     path('', views.index, name='index'),
-    path('login', views.login, name='Login')
+    path('signup', views.signup, name='signup'),
+    path('login', views.login, name='login'),
+    path('game', views.game, name='game'),
 ]

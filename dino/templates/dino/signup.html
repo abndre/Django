@@ -1,6 +1,7 @@
 {% extends "dino/BaseUP.html" %}
 {% block content %}
-  <form class = 'site-form' action="Login.html" method="post">
+  <form class = 'site-form' action="{% url 'dino:signup' %}"method="post">
+    {% csrf_token %}
     {{form}}
     <input type="submit" value="Signup">
   </form>

@@ -1,29 +1,40 @@
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, render, redirect
 from django.http import Http404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from django.views import generic
 
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from .models import Player
 
 def index(request):
-    #return HttpResponse("Hello, world. You're at the polls index.")
-    #return render_to_response('dino/index.html')
     return render(request, 'dino/index.html')
-# Create your views here.
-#class IndexView(generic.ListView):
-#    template_name = 'dino/index.html'
-#    def get_queryset(self):
-#        return HttpResponse("Hello, world. You're at the polls index.")
-#    #template_name = 'dino/index.html'
+
+def signup(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('dino:login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'dino/signup.html',{'form':form})
 
 def login(request):
-    form = UserCreationForm()
-    #form = 
-    return render(request, 'dino/Login.html',{'form':form})
+    if request.method == 'POST':
+        form = AuthenticationForm(data=request.POST)
+        if form.is_valid():
+            # log in User
+            return redirect('dino:game')
+    else:
+        form = AuthenticationForm()
+    return render(request, 'dino/login.html',{'form':form})
+
+def game(request):
+    return render(request, 'dino/game.html')
+
 
 def vote(request, question_id):
     pass
